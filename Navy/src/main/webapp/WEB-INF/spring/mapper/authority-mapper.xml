@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.biz.navy.dao.AuthoritiesDao">
+ 
+ 	<insert id="insert" parameterType="list">
+ 		INSERT INTO tbl_authority(au_id, username, authority)
+ 		select seq_authority.nextval,sub.* from(
+ 		<foreach collection="list" item="vo" separator="UNION ALL ">
+ 			select 
+	 			#{vo.username}, #{vo.authority}
+			from dual
+ 		</foreach>
+ 		) sub
+ 	</insert>
+
+
+
+</mapper> 

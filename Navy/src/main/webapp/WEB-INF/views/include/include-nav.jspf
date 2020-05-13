@@ -1,0 +1,63 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/include-head.jspf" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<script>
+$(function(){
+	$(document).on("click","a.logout", function(){
+		if(confirm("로그아웃 하실?")){
+			$.post("${rootPath}/logout",
+					{${_csrf.parameterName} : "${_csrf.token}"}	, function(result){
+						document.location.replace("${rootPath}/")
+				}
+			)
+		}
+	})
+})
+</script>
+    <header>
+      <div class="d-flex">
+        <ul class="nav ml-auto mr-5">
+          <!-- input 검색창-->
+          <li class="nav-item nav-input">
+            <input class="input-style" />
+            <img src="${rootPath}/resources/img/scope.png" class="scope" />
+          </li>
+          <!-- annonimous& authentication-->
+          <sec:authorize access="isAnonymous()">
+	          <li class="nav-item">
+	            <a class="nav-link" href="${rootPath}/user/login">login</a>
+	          </li>
+	          <li class="nav-item">
+	            <a class="nav-link" href="${rootPath}/user/join">join</a>
+	          </li>
+          </sec:authorize>
+          
+          <sec:authorize access="isAuthenticated()">
+          	<li class="nav-item">
+         	   <a class="nav-link logout" href="javascript:void(0)">logout</a>
+          	</li>
+          
+          <!--로그인시 mypage-->
+          	<li class="nav-item">
+            	<a class="nav-link" href="${rootPath}/user/mypage">mypage</a>
+          	</li>
+          </sec:authorize>
+          <sec:authorize access="hasRole('ROLE_ADMIN')">
+          <li class="nav-item">
+          	<a class="nav-link" href="${rootPath}/admin">admin</a>
+          </li>
+          </sec:authorize>
+        </ul>
+      </div>
+    </header>
+    <!--nav include 할 것-->
+    <nav
+      class="navbar navbar-expand-sm bg-white d-flex ml-5 mt-5 mb-5 sticky-top"
+    >
+      <a href="main.html" class="red-text mr-5 h-title"><h2>NAVIYA</h2></a>
+      <div class="d-flex">
+        <a class="nav-link black-text" href="${rootPath}/product/list">SHOP</a>
+        <a class="nav-link black-text">고객센터</a>
+      </div>
+    </nav>
