@@ -1,5 +1,7 @@
 package com.biz.navy.dao;
 
+import java.util.List;
+
 import com.biz.navy.domain.UserDetailsVO;
 
 public interface UserDao {
@@ -9,5 +11,7 @@ public interface UserDao {
 	public UserDetailsVO findByUserName(String username);
 
 	public int update(UserDetailsVO userVO);
+
+	public List<UserDetailsVO> selectAll();
 
 }

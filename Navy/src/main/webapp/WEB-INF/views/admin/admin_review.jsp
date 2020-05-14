@@ -8,10 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file = "/WEB-INF/views/include/include-nav.jspf" %>
 <h3>관리자용 리뷰 페이지</h3>
 <button></button>
-<%@ include file= "/WEB-INF/views/include/include-footer.jspf" %>
 </body>
 </html>
   

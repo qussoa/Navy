@@ -103,7 +103,66 @@ public class UserService implements UserDetailsService{
 		return passwordEncoder.matches(password.trim(), userVO.getPassword());
 	}
 
+	/**
+	 *  유저리스트 조회
+	 * @return
+	 * @author bjmin17
+	 */
+	public List<UserDetailsVO> selectAll() {
+		return userDao.selectAll();
+	}
 
+	/**
+	 * 유저 디테일 조회
+	 * @param username
+	 * @return
+	 * @author bjmin17
+	 */
+	public UserDetailsVO findByUserName(String username) {
+
+		return userDao.findByUserName(username);
+	}
+
+	/**
+	 * 관리자가 유저 정보 수정(권한 수정)
+	 * @param userVO
+	 * @param authList
+	 * @return
+	 * 
+	 * @author bjmin17
+	 */
+	public int update(UserDetailsVO userVO, String[] authList) {
+
+		int ret = userDao.update(userVO);
+		
+		// DB Update를 성공하면
+		// 로그인된 session 정보를 update 수행
+		if(ret > 0) {
+			List<AuthorityVO> authCollection = new ArrayList<>();
+			
+			for(String auth : authList) {
+				// auth가 빈칸인 경우가 생기지 않게 검사
+				if(!auth.isEmpty()) {
+					AuthorityVO authVO = AuthorityVO.builder()
+									.username(userVO.getUsername())
+									.authority(auth).build();
+				}
+			}
+			
+//			authDao.delete(userVO.getUsername());
+			authDao.insert(authCollection);
+		}
+		
+		return ret;
+	}
+
+	/**
+	 * mypage
+	 * @param userVO
+	 * @param password
+	 * @return
+	 * @author jjong9950
+	 */
 	public int update(UserDetailsVO userVO, String password) {
 		// TODO Auto-generated method stub
 		
@@ -139,4 +198,7 @@ public class UserService implements UserDetailsService{
 		
 		return ret;
 	}
+	
+	
+	
 }
