@@ -73,10 +73,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/mypage",method=RequestMethod.POST)
-	public String mypage(UserDetailsVO userVO, String[] auth, Model model) {
+	public String mypage(UserDetailsVO userVO, String[] auth, Model model, String password) {
 		log.debug("마이페이지 userVO : "+userVO.toString());
-		int ret = userService.update(userVO);
 		
-		return "redirect:/user/mypage";
+		log.debug("컨트롤러 패스워드"+password);
+		int ret = userService.update(userVO, password);
+		
+		return "redirect:/";
 	}
 }

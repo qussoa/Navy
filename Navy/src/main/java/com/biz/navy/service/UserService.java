@@ -104,17 +104,30 @@ public class UserService implements UserDetailsService{
 	}
 
 
-	public int update(UserDetailsVO userVO) {
+	public int update(UserDetailsVO userVO, String password) {
 		// TODO Auto-generated method stub
 		
 		Authentication oldAuth = SecurityContextHolder.getContext().getAuthentication();
-		
+		String encPassword = passwordEncoder.encode(password);
+		log.debug("암호화된 패스워드인가" + encPassword);
 		UserDetailsVO oldUserVO = (UserDetailsVO) oldAuth.getPrincipal();
 		
+//		oldUserVO.setPassword(encPassword);
 		oldUserVO.setEmail(userVO.getEmail());
 		oldUserVO.setPhone(userVO.getPhone());
 		oldUserVO.setAddress(userVO.getAddress());
 		
+//		oldUserVO = UserDetailsVO.builder()
+//				.password(encPassword)
+//				.email(userVO.getEmail())
+//				.phone(userVO.getPhone())
+//				.address(userVO.getAddress())
+//				.build();
+		
+		userVO.setPassword(encPassword);
+		log.debug("서비스 유저VO : " + userVO.toString());
+		// int ret = userDao.update(userVO);
+//		int ret = userDao.update(oldUserVO);
 		int ret = userDao.update(userVO);
 		
 		if(ret > 0) {

@@ -69,6 +69,7 @@
 	<update id="update" parameterType="userDetailsVO">
 		UPDATE tbl_users
 		SET email = #{email},
+		password = #{password},
 		phone = #{phone},
 		address = #{address}
 
