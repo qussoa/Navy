@@ -9,28 +9,29 @@
 <title>Insert title here</title>
 </head>
 <body>
-상품전체 리스트
 <table class="table table-hover">
 	<thead class="thead-light">
 		<tr>
-			<th>PCODE</th>
-			<th>상품명</th>
-			<th>가격</th>
-			<th>수량</th>
+			<th>NO</th>
+			<th>UserName</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>Address</th>
 		</tr>
 	</thead>
 	
 	<c:choose>
-		<c:when test="${empty productList}">
-			<tr><td colspan="4">상품 정보 없음
+		<c:when test="${empty userList}">
+			<tr><td colspan="5">User 정보 없음
 		</c:when>
 		<c:otherwise>
-			<c:forEach items="${productList}" var="pro" varStatus="i">
-				<tr data-id="${pro.p_code}" class="tr_user">
-					<td>${pro.p_code}</td>
-					<td>${pro.p_name}</td>
-					<td>${pro.p_price}</td>
-					<td>${pro.p_qty}</td>
+			<c:forEach items="${userList}" var="user" varStatus="i">
+				<tr data-id="${user.username}" class="tr_user">
+					<td>${i.count}</td>
+					<td>${user.username}</td>
+					<td>${user.email}</td>
+					<td>${user.phone}</td>
+					<td>${user.address}</td>
 				</tr>
 			</c:forEach>
 		</c:otherwise>
@@ -39,8 +40,6 @@
 	
 	<tr>
 </table>
-
-<button>등록</button>
 
 </body>
 </html>
