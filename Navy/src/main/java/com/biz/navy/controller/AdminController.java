@@ -65,6 +65,7 @@ public class AdminController {
 	@RequestMapping(value="/user_detail_view/{username}",method=RequestMethod.POST)
 	public String userDetailView(@PathVariable("username") String username, UserDetailsVO userVO, String[] auth, Model model) {
 		
+
 		int ret = userService.update(userVO, auth);
 		
 		return "redirect:/admin/user_detail_view/" + userVO.getUsername();

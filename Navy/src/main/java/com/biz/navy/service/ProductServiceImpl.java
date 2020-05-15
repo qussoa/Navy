@@ -18,6 +18,7 @@ public class ProductServiceImpl implements ProductService {
 	private final ProductDao proDao;
 	
 	@Override
+
 	public int insert(ProductVO productVO) {
 		return proDao.insert(productVO);
 	}
@@ -31,6 +32,7 @@ public class ProductServiceImpl implements ProductService {
 	public int delete(long p_code) {
 		// TODO Auto-generated method stub
 		return proDao.delete(p_code);
+
 	}
 
 	@Override

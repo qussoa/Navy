@@ -1,5 +1,9 @@
 package com.biz.navy.service;
 
+import java.util.List;
+
+import com.biz.navy.domain.ProductVO;
+
 public interface ProductService {
 
 	// 상품등록
@@ -12,14 +16,10 @@ public interface ProductService {
 	public int delete(long p_code);
 	
 	// 상품전체리스트
-	public String selectAll();
+	public List<ProductVO> selectAll();
 	
-	// 상품조회
-<<<<<<< Updated upstream
-	public String findById();
-=======
-	public ProductVO findById(long p_code);
 
+	public ProductVO findById(long p_code);
 	
->>>>>>> Stashed changes
+
 }

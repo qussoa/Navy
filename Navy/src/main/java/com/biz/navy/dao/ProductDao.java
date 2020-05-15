@@ -2,8 +2,10 @@ package com.biz.navy.dao;
 
 import java.util.List;
 
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -35,11 +37,13 @@ public interface ProductDao {
 	@Select("SELECT * FROM tbl_p_images WHERE p_img_p_code = #{p_img_p_code}")
 	public List<ProductImgVO> getPImgSeq(long p_img_p_code);
 
+
 	public int insert(ProductVO productVO);
 
 	public int update(ProductVO productVO);
 
 	@Delete("DELETE FROm tbl_product WHERE p_code = #{p_code}")
 	public int delete(long p_code);
+
 	
 }
