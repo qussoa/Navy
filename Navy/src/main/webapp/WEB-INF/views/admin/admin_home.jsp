@@ -10,12 +10,14 @@
 <title>Insert title here</title>
 	<script>
 		$(function(){
+			// 유저 리스트 보이기
 			$(document).on("click","#user_list",function(){
 				$.get("${rootPath}/admin/userlist",function(result){
 					$("#admin_content").html(result)
 				})
 			})
 			
+			// 유저 디테일 페이지 보이기
 			$(document).on("click","tr.tr_user",function(){
 				let username = $(this).data("id")
 				$.get("${rootPath}/admin/user_detail_view/" + username,
@@ -25,9 +27,47 @@
 				)
 			})
 			
+			// 상품 리스트 보이기
 			$(document).on("click","#pro_list",function(){
 				$.get("${rootPath}/admin/productlist",function(result){
 					$("#admin_content").html(result)
+				})
+			})
+			
+			// 상품 디테일 페이지 보이기
+			$(document).on("click","tr.tr_pro",function(){
+				let p_code = $(this).data("id")
+				
+				$.get("${rootPath}/admin/pro_detail_view/" + p_code,
+						function(result){
+					$("#admin_content").html(result)
+				})
+			})
+			
+			// 상품 등록 페이지 이동
+			$(document).on("click",".btn_pro_insert",function(){
+				
+				$.get("${rootPath}/admin/pro_insert",
+						function(result){
+					$("#admin_content").html(result)
+				})
+			})
+			
+			// 상품 수정 페이지 이동
+			$(document).on("click",".btn_pro_update",function(){
+				let p_code = $(this).data("id")
+				$.get("${rootPath}/admin/pro_update/" + p_code,
+						function(result){
+					$("#admin_content").html(result)
+				})
+			})
+			
+			// 상품 1개 삭제
+			$(document).on("click",".btn_pro_delete",function(){
+				let p_code = $(this).data("id")
+				$.get("${rootPath}/admin/pro_delete/" + p_code,
+						function(result){
+					document.location.replace("${rootPath}/admin/pro_delete/" + p_code)
 				})
 			})
 			
@@ -65,41 +105,17 @@
 			$(document).on("click","button#btn_save",function(){
 				let formdata = $("form").serialize()
 				let username = $(this).data("id")
-				/*
-				let txt = $("#auth").val()
-				if(txt == ${auth.authority}){
-					return false;
-				}
-				*/
 
 				$.post("${rootPath}/admin/user_detail_view/"+username,formdata,function(result){
 					$("#admin_content").html(result)
 					alert("Update 성공!!")
 				})
 				
-				
-				/*
-				alert(username)
-				$.ajax({
-					url : "${rootPath}/admin/user_detail_view/" + username,
-					data : formdata,
-					type : "POST",
-					success : function(result){
-						$("#admin_content").html(result)
-						alert("Update 성공!!")
-					},
-					error : function() {
-						alert("서버 통신 오류")
-					}
-				})
-				*/
-				
 			})
 			
 			$(document).on("change","#auth",function(){
 					let item = $(this).val()
 					$("div#auth_list").append($("<input/>",{class:"auth form-control mb-3", name:"auth",value:item}))
-					// alert(item)
 			})
 			
 			$(document).on("click","#auth_append",function(){

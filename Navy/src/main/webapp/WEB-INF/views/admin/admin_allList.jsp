@@ -21,12 +21,12 @@
 	</thead>
 	
 	<c:choose>
-		<c:when test="${empty productList}">
+		<c:when test="${empty PROLIST}">
 			<tr><td colspan="4">상품 정보 없음
 		</c:when>
 		<c:otherwise>
-			<c:forEach items="${productList}" var="pro" varStatus="i">
-				<tr data-id="${pro.p_code}" class="tr_user">
+			<c:forEach items="${PROLIST}" var="pro" varStatus="i">
+				<tr data-id="${pro.p_code}" class="tr_pro">
 					<td>${pro.p_code}</td>
 					<td>${pro.p_name}</td>
 					<td>${pro.p_price}</td>
@@ -40,7 +40,7 @@
 	<tr>
 </table>
 
-<button>등록</button>
+<button type="button" class="btn_pro_insert">등록</button>
 
 </body>
 </html>

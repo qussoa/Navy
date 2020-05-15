@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.biz.navy.domain.ProductVO;
 import com.biz.navy.domain.UserDetailsVO;
+import com.biz.navy.service.ProductImgService;
+import com.biz.navy.service.ProductService;
 import com.biz.navy.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,6 +25,8 @@ import lombok.extern.slf4j.Slf4j;
 public class AdminController {
 
 	private final UserService userService;
+	private final ProductService proService;
+	private final ProductImgService proImgService;
 	
 	@RequestMapping(value="",method=RequestMethod.GET)
 	public String admin() {
@@ -76,9 +81,69 @@ public class AdminController {
 	
 	// 상품 정보
 	@RequestMapping(value="/productlist",method=RequestMethod.GET)
-	public String productlist() {
+	public String productlist(Model model) {
+		
+		List<ProductVO> proList = proService.selectAll();
+		
+		model.addAttribute("PROLIST",proList);
 		
 		return "admin/admin_allList";
+	}
+	
+	// 상품 디테일 정보 보여주기
+	@RequestMapping(value="/pro_detail_view/{p_code}",method=RequestMethod.GET)
+	public String proDetailView(@PathVariable("p_code") String p_code, Model model) {
+		
+		long id = Long.valueOf(p_code);
+		ProductVO productVO = proService.findById(id);
+		model.addAttribute("productVO", productVO);
+		
+		return "admin/admin_proDetail";
+	}
+	
+	// 상품 등록 페이지 보여주기
+	@RequestMapping(value="/pro_insert",method=RequestMethod.GET)
+	public String proInsert(ProductVO productVO, Model model) {
+		
+		model.addAttribute("productVO",productVO);
+		
+		return "admin/admin_proInsert";
+	}
+	
+	// 상품 등록에 작성한 내용 DB에 심기
+	@RequestMapping(value="/pro_insert",method=RequestMethod.POST)
+	public String proInsert(ProductVO productVO, Model model, String dummy) {
+		
+		int ret = proService.insert(productVO);
+		
+		return "redirect:/admin/productlist";
+	}
+	
+	// 상품 수정하는 페이지로 이동
+	@RequestMapping(value="/pro_update/{p_code}",method=RequestMethod.GET)
+	public String proUpdate(@PathVariable("p_code") String p_code, ProductVO productVO, Model model) {
+		
+		productVO = proService.findById(Long.valueOf(p_code));
+		
+		model.addAttribute("productVO",productVO);
+		
+		return "admin/admin_proInsert";
+	}
+	
+	// 상품 수정하고 DB에 저장
+	@RequestMapping(value="/pro_update/{p_code}",method=RequestMethod.POST)
+	public String proUpdatePOST(@PathVariable("p_code") String p_code, ProductVO productVO, Model model) {
+		
+		int ret = proService.update(productVO);
+		
+		return "redirect:/admin/productlist";
+	}
+	
+	// 상품 삭제
+	@RequestMapping(value="/pro_delete/{p_code}",method=RequestMethod.GET)
+	public String proDelete(@PathVariable("p_code") String p_code) {
+		int ret = proService.delete(Long.valueOf(p_code));
+		return "redirect:/admin/productlist";
 	}
 	
 	// 주문 정보
