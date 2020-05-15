@@ -1,6 +1,7 @@
 package com.biz.navy.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class UserService implements UserDetailsService{
 				.username(userVO.getUsername())
 				.authority("USER").build());
 		
-		authDao.insert(authList);
+		// authDao.insert(authList);
 	
 		return ret;
 		
@@ -132,8 +133,9 @@ public class UserService implements UserDetailsService{
 	 * @author bjmin17
 	 */
 	public int update(UserDetailsVO userVO, String[] authList) {
-
-		int ret = userDao.update(userVO);
+		
+		
+		int ret = userDao.update_auth(userVO);
 		
 		// DB Update를 성공하면
 		// 로그인된 session 정보를 update 수행
@@ -146,10 +148,12 @@ public class UserService implements UserDetailsService{
 					AuthorityVO authVO = AuthorityVO.builder()
 									.username(userVO.getUsername())
 									.authority(auth).build();
+					
+					authCollection.add(authVO);
 				}
 			}
 			
-//			authDao.delete(userVO.getUsername());
+			authDao.delete(userVO.getUsername());
 			authDao.insert(authCollection);
 		}
 		
@@ -196,6 +200,13 @@ public class UserService implements UserDetailsService{
 			SecurityContextHolder.getContext().setAuthentication(newAuth);
 		}
 		
+		return ret;
+	}
+
+	// 권한 삭제
+	public int delete(long id) {
+
+		int ret = authDao.delete_id(id);
 		return ret;
 	}
 	

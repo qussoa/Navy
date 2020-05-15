@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ include file="/WEB-INF/views/include/include-head.jspf" %>
 
 <!DOCTYPE html>
@@ -63,19 +64,42 @@
 		
 			$(document).on("click","button#btn_save",function(){
 				let formdata = $("form").serialize()
-				
-				$.post("${rootPath}/admin/user_detail_view/",formdata,function(result){
+				let username = $(this).data("id")
+				/*
+				let txt = $("#auth").val()
+				if(txt == ${auth.authority}){
+					return false;
+				}
+				*/
+
+				$.post("${rootPath}/admin/user_detail_view/"+username,formdata,function(result){
 					$("#admin_content").html(result)
 					alert("Update 성공!!")
 				})
+				
+				
+				/*
+				alert(username)
+				$.ajax({
+					url : "${rootPath}/admin/user_detail_view/" + username,
+					data : formdata,
+					type : "POST",
+					success : function(result){
+						$("#admin_content").html(result)
+						alert("Update 성공!!")
+					},
+					error : function() {
+						alert("서버 통신 오류")
+					}
+				})
+				*/
+				
 			})
 			
 			$(document).on("change","#auth",function(){
-				/*
 					let item = $(this).val()
 					$("div#auth_list").append($("<input/>",{class:"auth form-control mb-3", name:"auth",value:item}))
 					// alert(item)
-				*/
 			})
 			
 			$(document).on("click","#auth_append",function(){
@@ -91,7 +115,10 @@
 			$(document).on("click",".btn-delete",function(){
 				
 				let id = $(this).data("id")
+				//alert(id)
 				let username = $(this).data("username")
+				//alert(username)
+				
 				if (confirm("권한을 삭제하겠습니까?")) {
 					// document.location.replace("${rootPath}/admin/delete?id=" + id)
 					
@@ -100,6 +127,7 @@
 						}		
 					)
 				}
+				
 				//alert(id)
 			})
 			
@@ -124,7 +152,6 @@
 
 <section id="body">
 	<ul>
-	
 		<p>관리자 메인페이지</p>
 		<li id="user_list"><a href="javascript:void(0)">회원 리스트</a></li>
 		<li id="pro_list"><a href="javascript:void(0)">상품 정보</a></li>

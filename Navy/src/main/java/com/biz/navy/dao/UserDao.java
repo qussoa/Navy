@@ -11,6 +11,9 @@ public interface UserDao {
 	public UserDetailsVO findByUserName(String username);
 
 	public int update(UserDetailsVO userVO);
+	
+	public int update_auth(UserDetailsVO userVO);
+	
 
 	public List<UserDetailsVO> selectAll();
 

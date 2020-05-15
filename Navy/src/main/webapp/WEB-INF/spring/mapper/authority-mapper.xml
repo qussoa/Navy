@@ -6,11 +6,11 @@
 <mapper namespace="com.biz.navy.dao.AuthoritiesDao">
  
  	<insert id="insert" parameterType="list">
- 		INSERT INTO tbl_authority(au_id, username, authority)
+ 		INSERT INTO tbl_authority(id, username, authority)
  		select seq_authority.nextval,sub.* from(
  		<foreach collection="list" item="vo" separator="UNION ALL ">
  			select 
-	 			#{vo.username}, #{vo.authority}
+	 			#{vo.username,jdbcType=VARCHAR}, #{vo.authority,jdbcType=VARCHAR}
 			from dual
  		</foreach>
  		) sub
