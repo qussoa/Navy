@@ -61,19 +61,30 @@
 		SEQ_USERS_ID.NEXTVAL,
 		#{username,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
-		#{enabled}
+		#{enabled,jdbcType=VARCHAR}
 		)
 
 	</insert>
 
 	<update id="update" parameterType="userDetailsVO">
 		UPDATE tbl_users
-		SET email = #{email},
-		password = #{password},
-		phone = #{phone},
-		address = #{address}
+		SET email = #{email,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR}
 
-		WHERE username = #{username}
+		WHERE username = #{username,jdbcType=VARCHAR}
+
+	</update>
+	
+	<update id="update_auth" parameterType="userDetailsVO">
+		UPDATE tbl_users
+		SET email = #{email,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		enabled = #{enabled}
+
+		WHERE username = #{username,jdbcType=VARCHAR}
 
 	</update>
 

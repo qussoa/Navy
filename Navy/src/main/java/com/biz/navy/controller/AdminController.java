@@ -7,12 +7,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.biz.navy.domain.UserDetailsVO;
 import com.biz.navy.service.UserService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 @RequestMapping(value="/admin")
@@ -54,10 +57,23 @@ public class AdminController {
 		return "admin/admin_userDetail";
 	}
 	
-	@RequestMapping(value="/user_detail_view",method=RequestMethod.POST)
-	public String userDetailView(String username, UserDetailsVO userVO, String[] auth, Model model) {
+	@RequestMapping(value="/user_detail_view/{username}",method=RequestMethod.POST)
+	public String userDetailView(@PathVariable("username") String username, UserDetailsVO userVO, String[] auth, Model model) {
+		
+		for(String a : auth) {
+			log.debug("AUTH: " + a);
+		}
 		
 		int ret = userService.update(userVO, auth);
+		
+		return "redirect:/admin/user_detail_view/" + userVO.getUsername();
+	}
+	
+	// 권한 삭제
+	@RequestMapping(value="/delete",method=RequestMethod.GET)
+	public String auth_delete(@RequestParam("id") long id, UserDetailsVO userVO) {
+		
+		int ret = userService.delete(id);
 		
 		return "redirect:/admin/user_detail_view/" + userVO.getUsername();
 	}
