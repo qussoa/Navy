@@ -60,9 +60,6 @@ public class AdminController {
 	@RequestMapping(value="/user_detail_view/{username}",method=RequestMethod.POST)
 	public String userDetailView(@PathVariable("username") String username, UserDetailsVO userVO, String[] auth, Model model) {
 		
-		for(String a : auth) {
-			log.debug("AUTH: " + a);
-		}
 		
 		int ret = userService.update(userVO, auth);
 		
