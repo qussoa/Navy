@@ -17,6 +17,9 @@
 			<th>Email</th>
 			<th>Phone</th>
 			<th>Address</th>
+			<th>정지여부</th>
+			<th>탈퇴여부</th>
+			
 		</tr>
 	</thead>
 	
@@ -32,6 +35,11 @@
 					<td>${user.email}</td>
 					<td>${user.phone}</td>
 					<td>${user.address}</td>
+					<td>${user.enabled}</td>
+					<td>${user.checkout}
+						<input type="checkbox" value="${user.checkout}" >
+					</td>
+					
 				</tr>
 			</c:forEach>
 		</c:otherwise>

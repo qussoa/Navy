@@ -43,6 +43,12 @@
 			</div>
 			<form:checkbox path="enabled" class="form-control" />
 		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<label for="checkout" class="input-group-text">탈퇴여부</label>
+			</div>
+			<form:checkbox path="checkout" class="form-control" />
+		</div>
 
 		<div id="auth_box">
 			<div align="right">

@@ -18,21 +18,21 @@ public class ProductServiceImpl implements ProductService {
 	private final ProductDao proDao;
 	
 	@Override
-	public String insert() {
-		// TODO Auto-generated method stub
-		return null;
+
+	public int insert(ProductVO productVO) {
+		return proDao.insert(productVO);
 	}
 
 	@Override
-	public String update() {
-		// TODO Auto-generated method stub
-		return null;
+	public int update(ProductVO productVO) {
+		return proDao.update(productVO);
 	}
 
 	@Override
-	public String delete() {
+	public int delete(long p_code) {
 		// TODO Auto-generated method stub
-		return null;
+		return proDao.delete(p_code);
+
 	}
 
 	@Override

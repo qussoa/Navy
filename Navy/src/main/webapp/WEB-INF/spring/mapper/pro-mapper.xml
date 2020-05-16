@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.biz.navy.dao.ProductDao">
+
+	<insert id="insert" parameterType="productVO">
+		INSERT INTO tbl_product(
+		
+		p_code,
+		p_name,
+		p_price,
+		p_qty,
+		p_desc,
+		p_image
+		
+		) VALUES (
+		SEQ_PRODUCT.NEXTVAL,
+		#{p_name},
+		#{p_price},
+		#{p_qty},
+		#{p_desc,jdbcType=VARCHAR},
+		#{p_image,jdbcType=VARCHAR}
+		)
+		
+	</insert>
+
+	<update id="update" parameterType="productVO">
+		UPDATE tbl_product SET
+			p_name = #{p_name},
+			p_price = #{p_price},
+			p_qty = #{p_qty},
+			p_desc = #{p_desc},
+			p_image = #{p_image}
+
+		WHERE p_code = #{p_code}
+	</update>
+	
+
+
+</mapper> 
