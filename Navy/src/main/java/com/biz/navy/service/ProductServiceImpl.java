@@ -32,7 +32,6 @@ public class ProductServiceImpl implements ProductService {
 	public int delete(long p_code) {
 		// TODO Auto-generated method stub
 		return proDao.delete(p_code);
-
 	}
 
 	@Override

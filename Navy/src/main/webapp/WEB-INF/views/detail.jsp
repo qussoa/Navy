@@ -187,6 +187,7 @@ $(function() {
 			<div style="margin-bottom: 200px;">상품의 디테일정보가 없습니다.</div>
 		</c:when>
 		<c:otherwise>
+			<p>${productVO.proDImgList.get(0).p_img_origin_name}</p>
 			<c:forEach items="${productVO.proDImgList}" var="proDImg">
 				<div data-id="${proDImg.p_img_seq}" data-pcode="${productVO.p_code}">
 					<div>${proDImg.p_img_seq}</div>

@@ -26,8 +26,8 @@ public class ProductController {
 	// 상품 전체 리스트 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String productList(ProductVO productVO, Model model) {
+		
 		List<ProductVO> proList = proService.selectAll();
-
 		List<ProductImgVO> proImgList = proImgService.selectAll();
 		
 		model.addAttribute("PROLIST", proList);

@@ -170,27 +170,24 @@ public class UserService implements UserDetailsService{
 	public int update(UserDetailsVO userVO, String password) {
 		// TODO Auto-generated method stub
 		
+		// 권한 객체 oldAuth를 선언하고 SecurityHolder~~에 들어있는 정보를 가져와 주입한다.
 		Authentication oldAuth = SecurityContextHolder.getContext().getAuthentication();
+		
+		// password를 매개변수로 받아 암호화 시킨후 선언한 객체에 넣어준다.
 		String encPassword = passwordEncoder.encode(password);
 		log.debug("암호화된 패스워드인가" + encPassword);
+		
+		// 권한객체에 principal()을 가져와 VO에 주입
 		UserDetailsVO oldUserVO = (UserDetailsVO) oldAuth.getPrincipal();
 		
-//		oldUserVO.setPassword(encPassword);
+		// vo에 원래 내용담기
 		oldUserVO.setEmail(userVO.getEmail());
 		oldUserVO.setPhone(userVO.getPhone());
 		oldUserVO.setAddress(userVO.getAddress());
-		
-//		oldUserVO = UserDetailsVO.builder()
-//				.password(encPassword)
-//				.email(userVO.getEmail())
-//				.phone(userVO.getPhone())
-//				.address(userVO.getAddress())
-//				.build();
-		
+
+		// 암호화된 password를 vo에 직접 담아줘야한다.
 		userVO.setPassword(encPassword);
 		log.debug("서비스 유저VO : " + userVO.toString());
-		// int ret = userDao.update(userVO);
-//		int ret = userDao.update(oldUserVO);
 		int ret = userDao.update(userVO);
 		
 		if(ret > 0) {
