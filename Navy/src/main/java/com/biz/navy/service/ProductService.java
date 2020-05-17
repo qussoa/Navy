@@ -17,7 +17,6 @@ public interface ProductService {
 	
 	// 상품전체리스트
 	public List<ProductVO> selectAll();
-	
 
 	public ProductVO findById(long p_code);
 	
