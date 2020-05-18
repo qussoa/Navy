@@ -85,7 +85,87 @@
             </div>
           </aside>
           <!--page include-->
-          <main class="col offset-2 h-100 user-main"></main>
+          <main class="col offset-2 h-100 user-main">
+            <div class="row bg-light">
+              <div class="col-12 py-4 text-center">
+                <span style="font-size: 30px;">회원관리</span>
+              </div>
+            </div>
+            <div class="row bg-white">
+              <div class="col-12 py-4">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="in-ck-box">NO</th>
+                      <th class="in-ck-box">회원ID</th>
+                      <th class="in-ck-box">권한</th>
+                      <th class="in-ck-box">권한유무</th>
+                      <th class="in-ck-box">탈퇴유무</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      onclick="$(document)
+                        .on('click','.td-click'
+                        ,function(){document.location.href='admin-userdetail.html'})"
+                    >
+                      <td class="in-ck-box td-click">1</td>
+                      <td class="in-ck-box td-click">qussoa</td>
+                      <td class="in-ck-box td-click">ADMIN</td>
+                      <td class="in-ck-box">
+                        <input type="checkbox" />
+                      </td>
+                      <td class="in-ck-box">
+                        <input type="checkbox" />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <!--pagination-->
+                <div class="d-flex justify-content-center">
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <li class="page-item">
+                        <a
+                          class="page-link black-text"
+                          href="#"
+                          aria-label="Previous"
+                        >
+                          <span aria-hidden="true" class="black-text"
+                            >&laquo;</span
+                          >
+                          <span class="sr-only">Previous</span>
+                        </a>
+                      </li>
+                      <li class="page-item black-text">
+                        <a class="page-link black-text" href="#">1</a>
+                      </li>
+                      <li class="page-item black-text">
+                        <a class="page-link black-text" href="#">2</a>
+                      </li>
+                      <li class="page-item black-text">
+                        <a class="page-link black-text" href="#">3</a>
+                      </li>
+                      <li class="page-item black-text">
+                        <a
+                          class="page-link black-text"
+                          href="#"
+                          aria-label="Next"
+                        >
+                          <span aria-hidden="true" class="black-text"
+                            >&raquo;</span
+                          >
+                          <span class="sr-only black-text">Next</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+                <!--pagination end-->
+              </div>
+            </div>
+          </main>
         </div>
       </div>
     </article>
