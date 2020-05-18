@@ -12,7 +12,11 @@
     />
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
+    <!--google chart-->
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
@@ -85,7 +89,111 @@
             </div>
           </aside>
           <!--page include-->
-          <main class="col offset-2 h-100 user-main"></main>
+          <main class="col offset-2 h-100 user-main">
+            <div class="row bg-light">
+              <div class="col-12 py-4 text-center">
+                <span style="font-size: 30px;">DASHBOARD</span>
+              </div>
+              <!--DASHBORAD Contents-->
+
+              <!--
+                  1. ajax로 보내는 방법
+                chart data 값 가져올때 참고 https://emflant.tistory.com/74
+                ajax로 데이터 가져오고 json으로 보내기
+
+                2. page rendering 하는 방법
+                model에 담아서 페이지 로드 할때 같이 넘겨주기
+                js에서 ${data} 이런식으로
+            -->
+              <script type="text/javascript">
+                google.charts.load("current", { packages: ["corechart"] });
+                google.charts.setOnLoadCallback(allCurveChart);
+                google.charts.setOnLoadCallback(todayCurveChart);
+
+                function allCurveChart() {
+                  var data = google.visualization.arrayToDataTable([
+                    ["Year", "WhitePants", "Blackpanther"],
+                    ["3월", 1000, 400],
+                    ["4월", 1170, 460],
+                    ["5월", 660, 1120],
+                    ["6월", 1030, 540],
+                  ]);
+
+                  var options = {
+                    title: "월 매출",
+                    width: 400,
+                    height: 300,
+                    hAxis: {
+                      title: "Month",
+                      titleTextStyle: { color: "#333" },
+                    },
+                    lineWidth: 5,
+                    series: {
+                      0: { color: "#1c91c0" },
+                      1: { color: "#e7711b" },
+                    },
+                    vAxis: { minValue: 0 },
+                  };
+
+                  var chart = new google.visualization.LineChart(
+                    document.getElementById("all_curve_chart")
+                  );
+
+                  chart.draw(data, options);
+                }
+                function allCurveChart() {
+                  var data = google.visualization.arrayToDataTable([
+                    ["Year", "WhitePants", "Blackpanther"],
+                    ["3월", 1000, 400],
+                    ["4월", 1170, 460],
+                    ["5월", 660, 1120],
+                    ["6월", 1030, 540],
+                  ]);
+
+                  var options = {
+                    title: "월 매출",
+                    width: 400,
+                    height: 300,
+                    hAxis: {
+                      title: "Month",
+
+                      titleTextStyle: { color: "#333" },
+                    },
+                    lineWidth: 5,
+                    series: {
+                      0: { color: "#1c91c0" },
+                      1: { color: "#e7711b" },
+                    },
+                    vAxis: { minValue: 0 },
+                  };
+
+                  var chart = new google.visualization.LineChart(
+                    document.getElementById("today_curve_chart")
+                  );
+
+                  chart.draw(data, options);
+                }
+              </script>
+              <div class="row">
+                <table class="col">
+                  <tr>
+                    <td>
+                      <div
+                        id="all_curve_chart"
+                        style="width: 100%; height: 400px;"
+                      ></div>
+                    </td>
+                    <td>
+                      <div
+                        id="today_curve_chart"
+                        style="width: 100%; height: 400px;"
+                      ></div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </main>
         </div>
       </div>
     </article>
