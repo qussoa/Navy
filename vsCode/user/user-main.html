@@ -16,6 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="../main.css" />
+    <link rel="stylesheet" href="./user-main.css" />
   </head>
   <style></style>
   <script>
@@ -68,23 +69,54 @@
     </nav>
     <!--main 화면 img들어갈 것-->
     <article class="all-browers">
-      <div class="row header-box">
-        <div class="col-12 py-4 text-center">
-          <span style="font-size: 30px; color: white; font-weight: bold;"
-            >MYPAGE</span
-          >
-
-          <!--main-list-->
-
+      <div class="container">
+        <!--main-list-->
+        <div class="mypage-header">
+          <div class="image_title_area top_banner_mypage">
+            <div class="img_title_inner">
+              <div class="image_title_text">
+                <h2 class="my_title">MYNAVI</h2>
+                <strong>나비가 꽃을 찾아오듯</strong>
+              </div>
+            </div>
+          </div>
+          <p class="user_welcome"></p>
           <ul class="info-box">
             <li class="buy">
-              <a>주문상품</a>
+              <a>
+                <dl>
+                  <dt>주문상품</dt>
+                  <dd>0</dd>
+                </dl>
+              </a>
             </li>
             <li class="delivery">
-              <a>배송중</a>
+              <a>
+                <dl>
+                  <dt>배송중</dt>
+                  <dd>2</dd>
+                </dl>
+              </a>
+            </li>
+            <li class="delivery">
+              <a>
+                <dl>
+                  <dt>장바구니</dt>
+                  <dd>5</dd>
+                </dl>
+              </a>
+            </li>
+            <li class="delivery">
+              <a>
+                <dl>
+                  <dt>문의내역</dt>
+                  <dd>10</dd>
+                </dl>
+              </a>
             </li>
           </ul>
         </div>
+        <!--end-->
       </div>
     </article>
   </body>

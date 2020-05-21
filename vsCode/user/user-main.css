@@ -1,5 +1,93 @@
+/*font-family*/
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* main-list */
-.header-box {
-  background-image: url("../img/gu-slide-1.jpg");
+.mypage-header {
+  display: block;
+  height: auto;
+  position: relative;
+  background: none;
+}
+.image_title_area {
+  height: 200px;
+  background-position: 50% 50%;
   background-repeat: no-repeat;
+}
+.image_title_text {
+  color: #fff;
+  text-align: center;
+  font-family: "GmarketSansMedium";
+  padding-top: 100px;
+  line-height: 1.6;
+}
+.my_title {
+  font-size: 34px;
+  font-weight: bolder;
+  letter-spacing: -3px;
+  color: #fff;
+}
+.sub_title {
+  font-size: 16px;
+  letter-spacing: -2px;
+  padding-top: 45px;
+}
+
+.top_banner_mypage {
+  background-image: url("../img/gu-slide-2.jpg");
+}
+
+.user_welcome {
+  float: right;
+  margin: 0 0 20px 0;
+  font-size: 13px;
+}
+
+.mypage-header > .info-box {
+  overflow: hidden;
+  clear: both;
+  margin-bottom: 20px;
+  padding: 0;
+  background-color: #f4f5f9;
+}
+
+li {
+  list-style: none;
+}
+
+.mypage-header > .info-box > li {
+  float: left;
+  position: relative;
+  width: 25%;
+  height: 80px;
+}
+
+.mypage-header > .info-box > li a {
+  display: block;
+  height: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.mypage_header > .info-box > li dl {
+  position: relative;
+  box-sizing: border-box;
+  padding: 32px 24px 0 80px;
+  color: #252c41;
+  text-align: right;
+}
+
+.info-box > li dl dd {
+  font-size: 23px;
+  letter-spacing: -0.4px;
+  color: #f1404b;
+}
+.mypage_header > .info-box > li dl dt {
+  margin-bottom: 6px;
+  letter-spacing: -0.2px;
 }
